@@ -4,30 +4,27 @@ import org.junit.Test;
 import static junit.framework.TestCase.assertEquals;
 
 public class VendingMachineTest {
+	VendingMachine vendingMachine = new VendingMachine();
+
 	@Test
 	public void whenNullCoinIsInsertedRejectCoin() {
-		VendingMachine vendingMachine = new VendingMachine();
 		assertEquals(false,vendingMachine.insertCoin(null));
 	}
 
 	@Test
 	public void whenNonCoinIsInsertedRejectCoin() {
-		VendingMachine vendingMachine = new VendingMachine();
 		assertEquals(false,vendingMachine.insertCoin(new Object()));
 	}
 
 	@Test
 	public void whenDimeIsInsertedAcceptDime() {
-		VendingMachine vendingMachine = new VendingMachine();
-		Coin coin = new Dime();
-		assertEquals(true,vendingMachine.insertCoin(coin));
+		assertEquals(true,vendingMachine.insertCoin(new Dime()));
 	}
 
 	@Test
 	public void whenDimeIsInsertedIncrementBalance() {
-		VendingMachine vendingMachine = new VendingMachine();
-		Coin coin = new Dime();
-		vendingMachine.insertCoin(coin);
-		assertEquals(10,vendingMachine.getBalance());
+		int beginningBalance = vendingMachine.getBalance();
+		vendingMachine.insertCoin(new Dime());
+		assertEquals(beginningBalance+10,vendingMachine.getBalance());
 	}
 }
