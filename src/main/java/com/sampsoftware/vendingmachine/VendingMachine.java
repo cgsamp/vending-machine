@@ -11,6 +11,12 @@ public class VendingMachine {
 			case 2268:
 				value = 10;
 				break;
+			case 5000:
+				value = 5;
+				break;
+			case 5670:
+				value = 25;
+				break;
 		}
 		return value;
 	}

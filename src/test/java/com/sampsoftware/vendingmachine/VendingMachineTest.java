@@ -17,14 +17,24 @@ public class VendingMachineTest {
 	}
 
 	@Test
-	public void whenDimeIsInsertedAcceptDime() {
+	public void whenValidCoinIsInsertedAcceptValidCoin() {
+		assertEquals(true,vendingMachine.insertCoin(new Nickel()));
 		assertEquals(true,vendingMachine.insertCoin(new Dime()));
+		assertEquals(true,vendingMachine.insertCoin(new Quarter()));
 	}
 
 	@Test
-	public void whenDimeIsInsertedIncrementBalance() {
+	public void whenValidCoinIsInsertedIncrementBalance() {
 		int beginningBalance = vendingMachine.getBalance();
+		vendingMachine.insertCoin(new Nickel());
+		assertEquals(beginningBalance+5,vendingMachine.getBalance());
+		
+		beginningBalance = vendingMachine.getBalance();
 		vendingMachine.insertCoin(new Dime());
 		assertEquals(beginningBalance+10,vendingMachine.getBalance());
+		
+		beginningBalance = vendingMachine.getBalance();
+		vendingMachine.insertCoin(new Quarter());
+		assertEquals(beginningBalance+25,vendingMachine.getBalance());
 	}
 }
