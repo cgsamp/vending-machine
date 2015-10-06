@@ -17,6 +17,11 @@ public class VendingMachineTest {
 	}
 
 	@Test
+	public void whenInvalidCoinIsInsertedRejectCoin() {
+		assertEquals(false,vendingMachine.insertCoin(new Penny()));
+	}
+
+	@Test
 	public void whenValidCoinIsInsertedAcceptValidCoin() {
 		assertEquals(true,vendingMachine.insertCoin(new Nickel()));
 		assertEquals(true,vendingMachine.insertCoin(new Dime()));

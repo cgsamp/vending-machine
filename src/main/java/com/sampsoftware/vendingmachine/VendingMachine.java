@@ -30,6 +30,15 @@ public class VendingMachine {
 
 		Coin coin = (Coin)inserted;
 
+		if (
+				!(
+					(coin instanceof Nickel) ||
+					(coin instanceof Dime) ||
+					(coin instanceof Quarter)
+				)
+			)
+			return false;
+
 		int value = findCoinValue(coin);
 		if (value == 0)
 			return false;
