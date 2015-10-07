@@ -1,9 +1,21 @@
 package com.sampsoftware.vendingmachine;
 
 import com.sampsoftware.vendingmachine.coins.*;
+import com.sampsoftware.vendingmachine.products.*;
 
 public class VendingMachine {
 	private int balanceInCents = 0;
+	private Product slot = null;
+
+	public int getBalance() {
+		return balanceInCents;
+	}
+
+	public Product getItemFromSlot() {
+		Product slotContents = slot;
+		slot = null;
+		return slotContents;
+	}
 
 	private static int findCoinValue(Coin coin) {
 		int value = 0;
@@ -47,7 +59,18 @@ public class VendingMachine {
 		return true;
 	}
 
-	public int getBalance() {
-		return balanceInCents;
+	public String pushButton(String productName) {
+		Product product = Product.getProduct(productName);
+		if (product == null)
+			return "INVALID PRODUCT";
+
+		if (balanceInCents >= product.getPrice()) {
+			balanceInCents -= product.getPrice();
+			slot = product;
+			return "THANK YOU";
+		}
+
+		return "INSERT COINS";
 	}
+
 }

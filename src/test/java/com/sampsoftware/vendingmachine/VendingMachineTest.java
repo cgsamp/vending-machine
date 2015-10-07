@@ -1,5 +1,7 @@
 import com.sampsoftware.vendingmachine.VendingMachine;
 import com.sampsoftware.vendingmachine.coins.*;
+import com.sampsoftware.vendingmachine.products.*;
+
 import org.junit.Test;
 import static junit.framework.TestCase.assertEquals;
 
@@ -41,5 +43,17 @@ public class VendingMachineTest {
 		beginningBalance = vendingMachine.getBalance();
 		vendingMachine.insertCoin(new Quarter());
 		assertEquals(beginningBalance+25,vendingMachine.getBalance());
+	}
+
+	@Test
+	public void buyCola() {
+		vendingMachine = new VendingMachine();
+		vendingMachine.insertCoin(new Quarter());
+		vendingMachine.insertCoin(new Quarter());
+		vendingMachine.insertCoin(new Quarter());
+		vendingMachine.insertCoin(new Quarter());
+
+		assertEquals("THANK YOU",vendingMachine.pushButton("cola"));
+		assertEquals(new Cola(),vendingMachine.getItemFromSlot());
 	}
 }
