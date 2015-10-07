@@ -6,6 +6,7 @@ import com.sampsoftware.vendingmachine.products.*;
 public class VendingMachine {
 	private int balanceInCents = 0;
 	private Product slot = null;
+	private int coinSlot = 0;
 
 	public int getBalance() {
 		return balanceInCents;
@@ -15,6 +16,13 @@ public class VendingMachine {
 		Product slotContents = slot;
 		slot = null;
 		return slotContents;
+	}
+
+	//TODO: Compose change into set of coins
+	public int checkCoinReturn() {
+		int change = balanceInCents;
+		balanceInCents = 0;
+		return change;
 	}
 
 	private static int findCoinValue(Coin coin) {
@@ -65,7 +73,7 @@ public class VendingMachine {
 			return "INVALID PRODUCT";
 
 		if (balanceInCents >= product.getPrice()) {
-			balanceInCents -= product.getPrice();
+			balanceInCents = balanceInCents - product.getPrice();
 			slot = product;
 			return "THANK YOU";
 		}

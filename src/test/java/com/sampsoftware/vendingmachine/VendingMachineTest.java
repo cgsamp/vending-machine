@@ -56,4 +56,19 @@ public class VendingMachineTest {
 		assertEquals("THANK YOU",vendingMachine.pushButton("cola"));
 		assertEquals(new Cola(),vendingMachine.getItemFromSlot());
 	}
+
+	@Test
+	public void buyColaAndGetChange() {
+		vendingMachine = new VendingMachine();
+		vendingMachine.insertCoin(new Quarter());
+		vendingMachine.insertCoin(new Quarter());
+		vendingMachine.insertCoin(new Quarter());
+		vendingMachine.insertCoin(new Dime());
+		vendingMachine.insertCoin(new Quarter());
+
+		assertEquals("THANK YOU",vendingMachine.pushButton("cola"));
+		assertEquals(new Cola(),vendingMachine.getItemFromSlot());
+		assertEquals(10,vendingMachine.getBalance());
+		assertEquals(10,vendingMachine.checkCoinReturn());
+	}
 }
